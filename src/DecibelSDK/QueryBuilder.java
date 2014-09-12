@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.commons.io.IOUtils;
@@ -21,45 +22,48 @@ public class QueryBuilder {
      * 
      * @param <T> The type of query object
      * @param queryObject The object itself
-     * @return A query string which can then be used in the RunQuery method
-     * @throws URISyntaxException 
+     * @return A query string which can then be used in the RunQuery method 
      */
-    public static <T> URI buildQuery(T queryObject) throws URISyntaxException{
-        String topic = ""; // TODO: add topics dictionary
-        
-        // Create the base of the query string
-        StringBuilder queryString = new StringBuilder(InternalUtilities.BASEURL);
-        queryString.append(topic);
-        
-        // Find all the properties that belong to the query object
-        Field[] properties = queryObject.getClass().getFields();
-        
-        // Get the name and value for each property
-        for(Field property : properties){
-            if("Xml".equals(property.getName())) continue;
-            String propName = property.getName();
-            Object propValue = null;
-            try {
-                propValue = property.get(queryObject);
-            } catch (IllegalArgumentException | IllegalAccessException ex) {
-                Logger.getLogger(QueryBuilder.class.getName()).log(Level.SEVERE, null, ex);
+    public static <T> URI buildQuery(T queryObject){
+        try {
+            String topic = ""; // TODO: add topics dictionary
+            
+            // Create the base of the query string
+            StringBuilder queryString = new StringBuilder(InternalUtilities.BASEURL);
+            queryString.append(topic);
+            
+            // Find all the properties that belong to the query object
+            Field[] properties = queryObject.getClass().getFields();
+            
+            // Get the name and value for each property
+            for(Field property : properties){
+                if("Xml".equals(property.getName())) continue;
+                String propName = property.getName();
+                Object propValue = null;
+                try {
+                    propValue = property.get(queryObject);
+                } catch (IllegalArgumentException | IllegalAccessException ex) {
+                    Logger.getLogger(QueryBuilder.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // Only add the property to the query if it has been set
+                if(InternalUtilities.isZeroOrNull(propValue)) continue;
+                // If property is an array - TODO: is this a ok check?
+                if(propValue.toString().contains("[]")){
+                    queryString.append(propName).append("=");
+                    for(Object item : (List<Object>)propValue)
+                        queryString.append(item).append(";");
+                    queryString.append("&");
+                }
+                else{
+                    queryString.append(propName).append("=").append(propValue).append("&");
+                }
             }
-            // Only add the property to the query if it has been set
-            if(InternalUtilities.isZeroOrNull(propValue)) continue;
-            // If property is an array - TODO: is this a ok check?
-            if(propValue.toString().contains("[]")){
-                queryString.append(propName).append("=");
-                for(Object item : (List<Object>)propValue)
-                    queryString.append(item).append(";");
-                queryString.append("&");
-            }
-            else{
-                queryString.append(propName).append("=").append(propValue).append("&");
-            }
+            
+            // Remove the trailing & if one exists and return the query string
+            return new URI(InternalUtilities.trimEnd(queryString.toString(), '&'));
+        } catch (URISyntaxException ex) {
+            return null; // TODO: improve error handling
         }
-        
-        // Remove the trailing & if one exists and return the query string
-        return new URI(InternalUtilities.trimEnd(queryString.toString(), '&'));
     }
     
     /**

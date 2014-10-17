@@ -7,7 +7,7 @@ Calls to the Decibel API are made through query objects, which take care of all 
 
 For instructions on how to use the Java SDK, please visit: [https://developer.decibel.net/java-sdk](https://developer.decibel.net/java-sdk)
 
-You will to sign up for a [Decibel API key](https://developer.decibel.net/signup) before running queries with the SDK
+You will nned to sign up for a [Decibel API key](https://developer.decibel.net/signup) before running queries with the SDK
 
 ###Terms of Service
 ©Decibel Music Systems, 2014. May be used freely in unaltered form.

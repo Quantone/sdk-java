@@ -1,68 +1,21 @@
 package DecibelSDK;
 
-import com.thoughtworks.xstream.XStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.xml.bind.JAXBException;
-import org.apache.http.client.methods.HttpGet;
+import java.net.URLConnection;
 
 public class InternalUtilities {
-    public static final String BASEURL = "http://localhost:3264/v2.1/";
+    public static final String BASEURL = "http://localhost:8080/v3/";
     
     /**
      * Sets the HttpGet request headers
      * 
-     * @param client The HttpGet object
+     * @param urlConn The URLConnection object
      * @param appId Decibel Application ID
      * @param appKey Decibel Application Key
      */
-    public static void SetDecibelRequestHeaders(HttpGet client, String appId, String appKey){
-        client.addHeader("DecibelAppId", appId);
-        client.addHeader("DecibelAppKey", appKey);
-        client.addHeader("DecibelTimestamp", new SimpleDateFormat("yyyyMMdd HH:mm:ss").format(new Date()));
-        
+    public static void SetDecibelRequestHeaders(URLConnection urlConn, String appId, String appKey){
+        urlConn.setRequestProperty("DecibelAppId", appId);
+        urlConn.setRequestProperty("DecibelAppKey", appKey);     
     }
-    
-    /**
-     * Deserialize an XML string into an object of type T
-     * 
-     * @param <T> The type of object to deserializes to
-     * @param resultClass
-     * @param str The XML string
-     * @return
-     * @throws JAXBException 
-     */
-    public static <T> T deserializeXmlString(String str) {
-        
-        XStream parser = new XStream();
-        
-        return (T)parser.fromXML(str);
-        /* OLD CODE:
-        // Convert result string to InputSource
-        InputSource is = new InputSource(new StringReader(str));
-        // Create a empty class of type T
-        Class<T> resultClass;
-        Object resultInstance = resultClass.newInstance();
-        // Create a JAXB context and unmarshaller
-        JAXBContext context = JAXBContext.newInstance(resultInstance);
-        Unmarshaller handler = context.createUnmarshaller();
-
-        // Deserialize the XML stream 
-        return (T) handler.unmarshal(is);
-        */
-    }
-    
-    /**
-     * Deserialize a JSON string to an object of type T
-     * 
-     * @param <T> The type of object
-     * @param resultClass
-     * @param str The JSON string
-     * @return The object representation of the JSON
-     */
-    public static <T> T deserializeJsonString(Class<T> resultClass, String str){
-        return null;
-    }   
     
     /**
      * Check if a object is 0, null or empty

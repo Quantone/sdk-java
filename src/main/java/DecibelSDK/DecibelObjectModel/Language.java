@@ -1,78 +1,16 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public enum Language { 
+public enum Language{
+    @SerializedName("English")
     ENGLISH,
-    BRITISHENGLISH,
-    AMERICANENGLISH,
-    AFRIKAANS,
-    ALBANIAN,
-    ARABIC,
-    ARMENIAN,
-    AZERBAIJANI,
-    BASQUE,
-    BELARUSIAN,
-    BENGALI,
-    BOSNIAN,
-    BRETON,
-    BULGARIAN,
-    CATALAN,
-    CHINESE,
-    CORNISH,
-    CORSICAN,
-    CROATIAN,
-    CZECH,
-    DANISH,
-    DUTCH,
-    ESTONIAN,
-    FINNISH,
-    FRENCH,
-    FRISIAN,
-    GAELIC,
-    GERMAN,
-    GREEK,
-    GUJARATI,
-    HAWAIIAN,
-    HEBREW,
-    HINDI,
-    HUNGARIAN,
-    ICELANDIC,
-    INDONESIAN,
-    IRISH,
-    ITALIAN,
+    @SerializedName("Japanese")
     JAPANESE,
-    KOREAN,
-    LATIN,
-    LATVIAN,
-    LITHUANIAN,
-    MACEDONIAN,
-    MANX,
-    MAORI,
-    NORWEGIAN,
-    OSSETIAN,
-    PERSIAN,
-    POLISH,
-    PORTUGUESE,
-    ROMANIAN,
-    RUSSIAN,
-    SERBIAN,
-    SLOVAK,
-    SLOVENIAN,
-    SPANISH,
-    SWEDISH,
-    TAJIK,
-    TAMIL,
-    TURKISH,
-    UKRAINIAN,
-    URDU,
-    UZBEK,
-    VIETNAMESE,
-    WELSH,
-    YIDDISH,
 }

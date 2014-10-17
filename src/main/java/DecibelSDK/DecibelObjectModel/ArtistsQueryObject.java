@@ -1,139 +1,172 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ArtistsQueryObject extends SearchQueryObject { 
-    private String nameField;
+public class ArtistsQueryObject extends SearchQueryObject{
+    private String name;
 
     /**
      * @return the Name
      */
     public String getName() {
-        return nameField;
+        return name;
     }
 
     /**
      * @param name the Name to set
      */
     public void setName(String name) {
-        this.nameField = name;
+        this.name = name;
     }
 
-    private ArtistSearchType nameSearchTypeField;
+    private ArtistSearchType nameSearchType;
 
     /**
      * @return the NameSearchType
      */
     public ArtistSearchType getNameSearchType() {
-        return nameSearchTypeField;
+        return nameSearchType;
     }
 
     /**
      * @param nameSearchType the NameSearchType to set
      */
     public void setNameSearchType(ArtistSearchType nameSearchType) {
-        this.nameSearchTypeField = nameSearchType;
+        this.nameSearchType = nameSearchType;
     }
 
-    private String birthDateField;
+    private String id;
+
+    /**
+     * @return the Id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the Id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private ArtistIdType idType;
+
+    /**
+     * @return the IdType
+     */
+    public ArtistIdType getIdType() {
+        return idType;
+    }
+
+    /**
+     * @param idType the IdType to set
+     */
+    public void setIdType(ArtistIdType idType) {
+        this.idType = idType;
+    }
+
+    private String birthDate;
 
     /**
      * @return the BirthDate
      */
     public String getBirthDate() {
-        return birthDateField;
+        return birthDate;
     }
 
     /**
      * @param birthDate the BirthDate to set
      */
     public void setBirthDate(String birthDate) {
-        this.birthDateField = birthDate;
+        this.birthDate = birthDate;
     }
 
-    private String deathDateField;
+    private String deathDate;
 
     /**
      * @return the DeathDate
      */
     public String getDeathDate() {
-        return deathDateField;
+        return deathDate;
     }
 
     /**
      * @param deathDate the DeathDate to set
      */
     public void setDeathDate(String deathDate) {
-        this.deathDateField = deathDate;
+        this.deathDate = deathDate;
     }
 
-    private Gender genderField;
+    private Gender gender;
 
     /**
      * @return the Gender
      */
     public Gender getGender() {
-        return genderField;
+        return gender;
     }
 
     /**
      * @param gender the Gender to set
      */
     public void setGender(Gender gender) {
-        this.genderField = gender;
+        this.gender = gender;
     }
 
-    private String genreField;
+    private String genre;
 
     /**
      * @return the Genre
      */
     public String getGenre() {
-        return genreField;
+        return genre;
     }
 
     /**
      * @param genre the Genre to set
      */
     public void setGenre(String genre) {
-        this.genreField = genre;
+        this.genre = genre;
     }
 
-    private ArtistRetrievalDepth retrievalDepthField;
+    private ArtistRetrievalDepth retrievalDepth;
 
     /**
      * @return the RetrievalDepth
      */
     public ArtistRetrievalDepth getRetrievalDepth() {
-        return retrievalDepthField;
+        return retrievalDepth;
     }
 
     /**
      * @param retrievalDepth the RetrievalDepth to set
      */
     public void setRetrievalDepth(ArtistRetrievalDepth retrievalDepth) {
-        this.retrievalDepthField = retrievalDepth;
+        this.retrievalDepth = retrievalDepth;
     }
 
-    private List<OrderArtistsBy> orderingPropertiesField;
+    private List<OrderArtistsBy> orderingProperties;
 
     /**
      * @return the OrderingProperties
      */
     public List<OrderArtistsBy> getOrderingProperties() {
-        return orderingPropertiesField;
+        return orderingProperties;
     }
 
     /**
      * @param orderingProperties the OrderingProperties to set
      */
     public void setOrderingProperties(List<OrderArtistsBy> orderingProperties) {
-        this.orderingPropertiesField = orderingProperties;
+        this.orderingProperties = orderingProperties;
     }
 
 }

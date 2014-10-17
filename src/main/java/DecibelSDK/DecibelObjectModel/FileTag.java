@@ -1,699 +1,476 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FileTag extends DecibelEntity { 
-    private String languageField;
-
-    /**
-     * @return the Language
-     */
-    public String getLanguage() {
-        return languageField;
-    }
-
-    /**
-     * @param language the Language to set
-     */
-    public void setLanguage(String language) {
-        this.languageField = language;
-    }
-
-    private String albumIdField;
+public class FileTag extends DecibelEntity{
+    private String albumId;
 
     /**
      * @return the AlbumId
      */
     public String getAlbumId() {
-        return albumIdField;
+        return albumId;
     }
 
     /**
      * @param albumId the AlbumId to set
      */
     public void setAlbumId(String albumId) {
-        this.albumIdField = albumId;
+        this.albumId = albumId;
     }
 
-    private String albumTitleField;
+    private String albumTitle;
 
     /**
      * @return the AlbumTitle
      */
     public String getAlbumTitle() {
-        return albumTitleField;
+        return albumTitle;
     }
 
     /**
      * @param albumTitle the AlbumTitle to set
      */
     public void setAlbumTitle(String albumTitle) {
-        this.albumTitleField = albumTitle;
+        this.albumTitle = albumTitle;
     }
 
-    private String albumMediumIdField;
+    private String albumMediumId;
 
     /**
      * @return the AlbumMediumId
      */
     public String getAlbumMediumId() {
-        return albumMediumIdField;
+        return albumMediumId;
     }
 
     /**
      * @param albumMediumId the AlbumMediumId to set
      */
     public void setAlbumMediumId(String albumMediumId) {
-        this.albumMediumIdField = albumMediumId;
+        this.albumMediumId = albumMediumId;
     }
 
-    private String mediaTypeField;
+    private String mediaType;
 
     /**
      * @return the MediaType
      */
     public String getMediaType() {
-        return mediaTypeField;
+        return mediaType;
     }
 
     /**
      * @param mediaType the MediaType to set
      */
     public void setMediaType(String mediaType) {
-        this.mediaTypeField = mediaType;
+        this.mediaType = mediaType;
     }
 
-    private String albumBarcodeField;
+    private String albumEAN;
 
     /**
-     * @return the AlbumBarcode
+     * @return the AlbumEAN
      */
-    public String getAlbumBarcode() {
-        return albumBarcodeField;
+    public String getAlbumEAN() {
+        return albumEAN;
     }
 
     /**
-     * @param albumBarcode the AlbumBarcode to set
+     * @param albumEAN the AlbumEAN to set
      */
-    public void setAlbumBarcode(String albumBarcode) {
-        this.albumBarcodeField = albumBarcode;
+    public void setAlbumEAN(String albumEAN) {
+        this.albumEAN = albumEAN;
     }
 
-    private String publisherField;
+    private String publisher;
 
     /**
      * @return the Publisher
      */
     public String getPublisher() {
-        return publisherField;
+        return publisher;
     }
 
     /**
      * @param publisher the Publisher to set
      */
     public void setPublisher(String publisher) {
-        this.publisherField = publisher;
+        this.publisher = publisher;
     }
 
-    private String catalogNumField;
+    private String catalogNum;
 
     /**
      * @return the CatalogNum
      */
     public String getCatalogNum() {
-        return catalogNumField;
+        return catalogNum;
     }
 
     /**
      * @param catalogNum the CatalogNum to set
      */
     public void setCatalogNum(String catalogNum) {
-        this.catalogNumField = catalogNum;
+        this.catalogNum = catalogNum;
     }
 
-    private String releaseDateField;
+    private String releaseDate;
 
     /**
      * @return the ReleaseDate
      */
     public String getReleaseDate() {
-        return releaseDateField;
+        return releaseDate;
     }
 
     /**
      * @param releaseDate the ReleaseDate to set
      */
     public void setReleaseDate(String releaseDate) {
-        this.releaseDateField = releaseDate;
+        this.releaseDate = releaseDate;
     }
 
-    private String discTitleField;
+    private String discTitle;
 
     /**
      * @return the DiscTitle
      */
     public String getDiscTitle() {
-        return discTitleField;
+        return discTitle;
     }
 
     /**
      * @param discTitle the DiscTitle to set
      */
     public void setDiscTitle(String discTitle) {
-        this.discTitleField = discTitle;
+        this.discTitle = discTitle;
     }
 
-    private Integer discNumField;
+    private Integer discNum;
 
     /**
      * @return the DiscNum
      */
     public Integer getDiscNum() {
-        return discNumField;
+        return discNum;
     }
 
     /**
      * @param discNum the DiscNum to set
      */
     public void setDiscNum(Integer discNum) {
-        this.discNumField = discNum;
+        this.discNum = discNum;
     }
 
-    private Integer discCountField;
+    private Integer discCount;
 
     /**
      * @return the DiscCount
      */
     public Integer getDiscCount() {
-        return discCountField;
+        return discCount;
     }
 
     /**
      * @param discCount the DiscCount to set
      */
     public void setDiscCount(Integer discCount) {
-        this.discCountField = discCount;
+        this.discCount = discCount;
     }
 
-    private String discStringField;
+    private String discEAN;
 
     /**
-     * @return the DiscString
+     * @return the DiscEAN
      */
-    public String getDiscString() {
-        return discStringField;
-    }
-
-    /**
-     * @param discString the DiscString to set
-     */
-    public void setDiscString(String discString) {
-        this.discStringField = discString;
-    }
-
-    private String discBarcodeField;
-
-    /**
-     * @return the DiscBarcode
-     */
-    public String getDiscBarcode() {
-        return discBarcodeField;
+    public String getDiscEAN() {
+        return discEAN;
     }
 
     /**
-     * @param discBarcode the DiscBarcode to set
+     * @param discEAN the DiscEAN to set
      */
-    public void setDiscBarcode(String discBarcode) {
-        this.discBarcodeField = discBarcode;
+    public void setDiscEAN(String discEAN) {
+        this.discEAN = discEAN;
     }
 
-    private String cddbIdField;
+    private String cddbId;
 
     /**
      * @return the CddbId
      */
     public String getCddbId() {
-        return cddbIdField;
+        return cddbId;
     }
 
     /**
      * @param cddbId the CddbId to set
      */
     public void setCddbId(String cddbId) {
-        this.cddbIdField = cddbId;
+        this.cddbId = cddbId;
     }
 
-    private String recordingIdField;
+    private String recordingId;
 
     /**
      * @return the RecordingId
      */
     public String getRecordingId() {
-        return recordingIdField;
+        return recordingId;
     }
 
     /**
      * @param recordingId the RecordingId to set
      */
     public void setRecordingId(String recordingId) {
-        this.recordingIdField = recordingId;
+        this.recordingId = recordingId;
     }
 
-    private double secondsField;
+    private Double duration;
 
     /**
-     * @return the Seconds
+     * @return the Duration
      */
-    public double getSeconds() {
-        return secondsField;
-    }
-
-    /**
-     * @param seconds the Seconds to set
-     */
-    public void setSeconds(double seconds) {
-        this.secondsField = seconds;
-    }
-
-    private String timeStringField;
-
-    /**
-     * @return the TimeString
-     */
-    public String getTimeString() {
-        return timeStringField;
+    public Double getDuration() {
+        return duration;
     }
 
     /**
-     * @param timeString the TimeString to set
+     * @param duration the Duration to set
      */
-    public void setTimeString(String timeString) {
-        this.timeStringField = timeString;
+    public void setDuration(Double duration) {
+        this.duration = duration;
     }
 
-    private String sideField;
+    private Integer trackNumber;
 
     /**
-     * @return the Side
+     * @return the TrackNumber
      */
-    public String getSide() {
-        return sideField;
-    }
-
-    /**
-     * @param side the Side to set
-     */
-    public void setSide(String side) {
-        this.sideField = side;
-    }
-
-    private Integer trackNumField;
-
-    /**
-     * @return the TrackNum
-     */
-    public Integer getTrackNum() {
-        return trackNumField;
+    public Integer getTrackNumber() {
+        return trackNumber;
     }
 
     /**
-     * @param trackNum the TrackNum to set
+     * @param trackNumber the TrackNumber to set
      */
-    public void setTrackNum(Integer trackNum) {
-        this.trackNumField = trackNum;
+    public void setTrackNumber(Integer trackNumber) {
+        this.trackNumber = trackNumber;
     }
 
-    private Integer trackCountField;
+    private Integer trackCount;
 
     /**
      * @return the TrackCount
      */
     public Integer getTrackCount() {
-        return trackCountField;
+        return trackCount;
     }
 
     /**
      * @param trackCount the TrackCount to set
      */
     public void setTrackCount(Integer trackCount) {
-        this.trackCountField = trackCount;
+        this.trackCount = trackCount;
     }
 
-    private String trackStringField;
+    private String trackNumberLiteral;
 
     /**
-     * @return the TrackString
+     * @return the TrackNumberLiteral
      */
-    public String getTrackString() {
-        return trackStringField;
+    public String getTrackNumberLiteral() {
+        return trackNumberLiteral;
     }
 
     /**
-     * @param trackString the TrackString to set
+     * @param trackNumberLiteral the TrackNumberLiteral to set
      */
-    public void setTrackString(String trackString) {
-        this.trackStringField = trackString;
+    public void setTrackNumberLiteral(String trackNumberLiteral) {
+        this.trackNumberLiteral = trackNumberLiteral;
     }
 
-    private String trackTitleField;
+    private String trackTitle;
 
     /**
      * @return the TrackTitle
      */
     public String getTrackTitle() {
-        return trackTitleField;
+        return trackTitle;
     }
 
     /**
      * @param trackTitle the TrackTitle to set
      */
     public void setTrackTitle(String trackTitle) {
-        this.trackTitleField = trackTitle;
+        this.trackTitle = trackTitle;
     }
 
-    private String trackPostscriptField;
-
-    /**
-     * @return the TrackPostscript
-     */
-    public String getTrackPostscript() {
-        return trackPostscriptField;
-    }
-
-    /**
-     * @param trackPostscript the TrackPostscript to set
-     */
-    public void setTrackPostscript(String trackPostscript) {
-        this.trackPostscriptField = trackPostscript;
-    }
-
-    private String puidField;
+    private String puid;
 
     /**
      * @return the Puid
      */
     public String getPuid() {
-        return puidField;
+        return puid;
     }
 
     /**
      * @param puid the Puid to set
      */
     public void setPuid(String puid) {
-        this.puidField = puid;
+        this.puid = puid;
     }
 
-    private String chromaprintIdField;
-
-    /**
-     * @return the ChromaprintId
-     */
-    public String getChromaprintId() {
-        return chromaprintIdField;
-    }
-
-    /**
-     * @param chromaprintId the ChromaprintId to set
-     */
-    public void setChromaprintId(String chromaprintId) {
-        this.chromaprintIdField = chromaprintId;
-    }
-
-    private String worksField;
+    private String works;
 
     /**
      * @return the Works
      */
     public String getWorks() {
-        return worksField;
+        return works;
     }
 
     /**
      * @param works the Works to set
      */
     public void setWorks(String works) {
-        this.worksField = works;
+        this.works = works;
     }
 
-    private String artistField;
+    private String trackArtist;
 
     /**
-     * @return the Artist
+     * @return the TrackArtist
      */
-    public String getArtist() {
-        return artistField;
-    }
-
-    /**
-     * @param artist the Artist to set
-     */
-    public void setArtist(String artist) {
-        this.artistField = artist;
-    }
-
-    private String albumArtistField;
-
-    /**
-     * @return the AlbumArtist
-     */
-    public String getAlbumArtist() {
-        return albumArtistField;
+    public String getTrackArtist() {
+        return trackArtist;
     }
 
     /**
-     * @param albumArtist the AlbumArtist to set
+     * @param trackArtist the TrackArtist to set
      */
-    public void setAlbumArtist(String albumArtist) {
-        this.albumArtistField = albumArtist;
+    public void setTrackArtist(String trackArtist) {
+        this.trackArtist = trackArtist;
     }
 
-    private String genresField;
+    private String genres;
 
     /**
      * @return the Genres
      */
     public String getGenres() {
-        return genresField;
+        return genres;
     }
 
     /**
      * @param genres the Genres to set
      */
     public void setGenres(String genres) {
-        this.genresField = genres;
+        this.genres = genres;
     }
 
-    private String nationalityField;
-
-    /**
-     * @return the Nationality
-     */
-    public String getNationality() {
-        return nationalityField;
-    }
-
-    /**
-     * @param nationality the Nationality to set
-     */
-    public void setNationality(String nationality) {
-        this.nationalityField = nationality;
-    }
-
-    private String conductorField;
+    private String conductor;
 
     /**
      * @return the Conductor
      */
     public String getConductor() {
-        return conductorField;
+        return conductor;
     }
 
     /**
      * @param conductor the Conductor to set
      */
     public void setConductor(String conductor) {
-        this.conductorField = conductor;
+        this.conductor = conductor;
     }
 
-    private String composerField;
-
-    /**
-     * @return the Composer
-     */
-    public String getComposer() {
-        return composerField;
-    }
-
-    /**
-     * @param composer the Composer to set
-     */
-    public void setComposer(String composer) {
-        this.composerField = composer;
-    }
-
-    private String recordingDateField;
+    private String recordingDate;
 
     /**
      * @return the RecordingDate
      */
     public String getRecordingDate() {
-        return recordingDateField;
+        return recordingDate;
     }
 
     /**
      * @param recordingDate the RecordingDate to set
      */
     public void setRecordingDate(String recordingDate) {
-        this.recordingDateField = recordingDate;
+        this.recordingDate = recordingDate;
     }
 
-    private String recordingVenueField;
+    private String recordingVenue;
 
     /**
      * @return the RecordingVenue
      */
     public String getRecordingVenue() {
-        return recordingVenueField;
+        return recordingVenue;
     }
 
     /**
      * @param recordingVenue the RecordingVenue to set
      */
     public void setRecordingVenue(String recordingVenue) {
-        this.recordingVenueField = recordingVenue;
+        this.recordingVenue = recordingVenue;
     }
 
-    private String recordingLocationField;
-
-    /**
-     * @return the RecordingLocation
-     */
-    public String getRecordingLocation() {
-        return recordingLocationField;
-    }
-
-    /**
-     * @param recordingLocation the RecordingLocation to set
-     */
-    public void setRecordingLocation(String recordingLocation) {
-        this.recordingLocationField = recordingLocation;
-    }
-
-    private String matrixField;
+    private String matrix;
 
     /**
      * @return the Matrix
      */
     public String getMatrix() {
-        return matrixField;
+        return matrix;
     }
 
     /**
      * @param matrix the Matrix to set
      */
     public void setMatrix(String matrix) {
-        this.matrixField = matrix;
+        this.matrix = matrix;
     }
 
-    private String commentField;
-
-    /**
-     * @return the Comment
-     */
-    public String getComment() {
-        return commentField;
-    }
-
-    /**
-     * @param comment the Comment to set
-     */
-    public void setComment(String comment) {
-        this.commentField = comment;
-    }
-
-    private String notesField;
-
-    /**
-     * @return the Notes
-     */
-    public String getNotes() {
-        return notesField;
-    }
-
-    /**
-     * @param notes the Notes to set
-     */
-    public void setNotes(String notes) {
-        this.notesField = notes;
-    }
-
-    private String participantsField;
+    private String participants;
 
     /**
      * @return the Participants
      */
     public String getParticipants() {
-        return participantsField;
+        return participants;
     }
 
     /**
      * @param participants the Participants to set
      */
     public void setParticipants(String participants) {
-        this.participantsField = participants;
+        this.participants = participants;
     }
 
-    private String thumbnailUrlField;
+    private String beatsPerMinute;
 
     /**
-     * @return the ThumbnailUrl
+     * @return the BeatsPerMinute
      */
-    public String getThumbnailUrl() {
-        return thumbnailUrlField;
-    }
-
-    /**
-     * @param thumbnailUrl the ThumbnailUrl to set
-     */
-    public void setThumbnailUrl(String thumbnailUrl) {
-        this.thumbnailUrlField = thumbnailUrl;
-    }
-
-    private String coverUrlField;
-
-    /**
-     * @return the CoverUrl
-     */
-    public String getCoverUrl() {
-        return coverUrlField;
+    public String getBeatsPerMinute() {
+        return beatsPerMinute;
     }
 
     /**
-     * @param coverUrl the CoverUrl to set
+     * @param beatsPerMinute the BeatsPerMinute to set
      */
-    public void setCoverUrl(String coverUrl) {
-        this.coverUrlField = coverUrl;
-    }
-
-    private String bpmField;
-
-    /**
-     * @return the Bpm
-     */
-    public String getBpm() {
-        return bpmField;
-    }
-
-    /**
-     * @param bpm the Bpm to set
-     */
-    public void setBpm(String bpm) {
-        this.bpmField = bpm;
+    public void setBeatsPerMinute(String beatsPerMinute) {
+        this.beatsPerMinute = beatsPerMinute;
     }
 
 }

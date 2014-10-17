@@ -1,235 +1,236 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Album extends DecibelEntity { 
-    private String idField;
+public class Album extends DecibelEntity{
+    private String id;
 
     /**
      * @return the Id
      */
     public String getId() {
-        return idField;
+        return id;
     }
 
     /**
      * @param id the Id to set
      */
     public void setId(String id) {
-        this.idField = id;
+        this.id = id;
     }
 
-    private String titleField;
+    private String title;
 
     /**
      * @return the Title
      */
     public String getTitle() {
-        return titleField;
+        return title;
     }
 
     /**
      * @param title the Title to set
      */
     public void setTitle(String title) {
-        this.titleField = title;
+        this.title = title;
     }
 
-    private String artistsLiteralField;
+    private String artistsLiteral;
 
     /**
      * @return the ArtistsLiteral
      */
     public String getArtistsLiteral() {
-        return artistsLiteralField;
+        return artistsLiteral;
     }
 
     /**
      * @param artistsLiteral the ArtistsLiteral to set
      */
     public void setArtistsLiteral(String artistsLiteral) {
-        this.artistsLiteralField = artistsLiteral;
+        this.artistsLiteral = artistsLiteral;
     }
 
-    private List<Artist> artistsField;
+    private Artist[] artists;
 
     /**
      * @return the Artists
      */
-    public List<Artist> getArtists() {
-        return artistsField;
+    public Artist[] getArtists() {
+        return artists;
     }
 
     /**
      * @param artists the Artists to set
      */
-    public void setArtists(List<Artist> artists) {
-        this.artistsField = artists;
+    public void setArtists(Artist[] artists) {
+        this.artists = artists;
     }
 
-    private String originalReleaseDateField;
+    private String originalReleaseDate;
 
     /**
      * @return the OriginalReleaseDate
      */
     public String getOriginalReleaseDate() {
-        return originalReleaseDateField;
+        return originalReleaseDate;
     }
 
     /**
      * @param originalReleaseDate the OriginalReleaseDate to set
      */
     public void setOriginalReleaseDate(String originalReleaseDate) {
-        this.originalReleaseDateField = originalReleaseDate;
+        this.originalReleaseDate = originalReleaseDate;
     }
 
-    private ContentFormat formatField;
+    private ContentFormat format;
 
     /**
      * @return the Format
      */
     public ContentFormat getFormat() {
-        return formatField;
+        return format;
     }
 
     /**
      * @param format the Format to set
      */
     public void setFormat(ContentFormat format) {
-        this.formatField = format;
+        this.format = format;
     }
 
-    private boolean isLiveField;
+    private Boolean isLive;
 
     /**
      * @return the IsLive
      */
-    public boolean getIsLive() {
-        return isLiveField;
+    public Boolean getIsLive() {
+        return isLive;
     }
 
     /**
      * @param isLive the IsLive to set
      */
-    public void setIsLive(boolean isLive) {
-        this.isLiveField = isLive;
+    public void setIsLive(Boolean isLive) {
+        this.isLive = isLive;
     }
 
-    private boolean isUnofficialField;
+    private Boolean isUnofficial;
 
     /**
      * @return the IsUnofficial
      */
-    public boolean getIsUnofficial() {
-        return isUnofficialField;
+    public Boolean getIsUnofficial() {
+        return isUnofficial;
     }
 
     /**
      * @param isUnofficial the IsUnofficial to set
      */
-    public void setIsUnofficial(boolean isUnofficial) {
-        this.isUnofficialField = isUnofficial;
+    public void setIsUnofficial(Boolean isUnofficial) {
+        this.isUnofficial = isUnofficial;
     }
 
-    private List<Genre> genresField;
+    private Genre[] genres;
 
     /**
      * @return the Genres
      */
-    public List<Genre> getGenres() {
-        return genresField;
+    public Genre[] getGenres() {
+        return genres;
     }
 
     /**
      * @param genres the Genres to set
      */
-    public void setGenres(List<Genre> genres) {
-        this.genresField = genres;
+    public void setGenres(Genre[] genres) {
+        this.genres = genres;
     }
 
-    private String imageIdField;
+    private String imageId;
 
     /**
      * @return the ImageId
      */
     public String getImageId() {
-        return imageIdField;
+        return imageId;
     }
 
     /**
      * @param imageId the ImageId to set
      */
     public void setImageId(String imageId) {
-        this.imageIdField = imageId;
+        this.imageId = imageId;
     }
 
-    private List<Participation> participationsField;
+    private Participation[] participations;
 
     /**
      * @return the Participations
      */
-    public List<Participation> getParticipations() {
-        return participationsField;
+    public Participation[] getParticipations() {
+        return participations;
     }
 
     /**
      * @param participations the Participations to set
      */
-    public void setParticipations(List<Participation> participations) {
-        this.participationsField = participations;
+    public void setParticipations(Participation[] participations) {
+        this.participations = participations;
     }
 
-    private List<Identifier> identifiersField;
+    private AlbumIdentifier[] identifiers;
 
     /**
      * @return the Identifiers
      */
-    public List<Identifier> getIdentifiers() {
-        return identifiersField;
+    public AlbumIdentifier[] getIdentifiers() {
+        return identifiers;
     }
 
     /**
      * @param identifiers the Identifiers to set
      */
-    public void setIdentifiers(List<Identifier> identifiers) {
-        this.identifiersField = identifiers;
+    public void setIdentifiers(AlbumIdentifier[] identifiers) {
+        this.identifiers = identifiers;
     }
 
-    private List<Recording> recordingsField;
+    private Recording[] recordings;
 
     /**
      * @return the Recordings
      */
-    public List<Recording> getRecordings() {
-        return recordingsField;
+    public Recording[] getRecordings() {
+        return recordings;
     }
 
     /**
      * @param recordings the Recordings to set
      */
-    public void setRecordings(List<Recording> recordings) {
-        this.recordingsField = recordings;
+    public void setRecordings(Recording[] recordings) {
+        this.recordings = recordings;
     }
 
-    private List<Release> releasesField;
+    private Release[] releases;
 
     /**
      * @return the Releases
      */
-    public List<Release> getReleases() {
-        return releasesField;
+    public Release[] getReleases() {
+        return releases;
     }
 
     /**
      * @param releases the Releases to set
      */
-    public void setReleases(List<Release> releases) {
-        this.releasesField = releases;
+    public void setReleases(Release[] releases) {
+        this.releases = releases;
     }
 
 }

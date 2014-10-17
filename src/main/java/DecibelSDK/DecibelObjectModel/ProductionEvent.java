@@ -1,107 +1,108 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ProductionEvent extends DecibelEntity { 
-    private boolean isRecordingField;
+public class ProductionEvent extends DecibelEntity{
+    private Boolean isRecording;
 
     /**
      * @return the IsRecording
      */
-    public boolean getIsRecording() {
-        return isRecordingField;
+    public Boolean getIsRecording() {
+        return isRecording;
     }
 
     /**
      * @param isRecording the IsRecording to set
      */
-    public void setIsRecording(boolean isRecording) {
-        this.isRecordingField = isRecording;
+    public void setIsRecording(Boolean isRecording) {
+        this.isRecording = isRecording;
     }
 
-    private boolean isMixingField;
+    private Boolean isMixing;
 
     /**
      * @return the IsMixing
      */
-    public boolean getIsMixing() {
-        return isMixingField;
+    public Boolean getIsMixing() {
+        return isMixing;
     }
 
     /**
      * @param isMixing the IsMixing to set
      */
-    public void setIsMixing(boolean isMixing) {
-        this.isMixingField = isMixing;
+    public void setIsMixing(Boolean isMixing) {
+        this.isMixing = isMixing;
     }
 
-    private boolean isMasteringField;
+    private Boolean isMastering;
 
     /**
      * @return the IsMastering
      */
-    public boolean getIsMastering() {
-        return isMasteringField;
+    public Boolean getIsMastering() {
+        return isMastering;
     }
 
     /**
      * @param isMastering the IsMastering to set
      */
-    public void setIsMastering(boolean isMastering) {
-        this.isMasteringField = isMastering;
+    public void setIsMastering(Boolean isMastering) {
+        this.isMastering = isMastering;
     }
 
-    private boolean isRemasteringField;
+    private Boolean isRemastering;
 
     /**
      * @return the IsRemastering
      */
-    public boolean getIsRemastering() {
-        return isRemasteringField;
+    public Boolean getIsRemastering() {
+        return isRemastering;
     }
 
     /**
      * @param isRemastering the IsRemastering to set
      */
-    public void setIsRemastering(boolean isRemastering) {
-        this.isRemasteringField = isRemastering;
+    public void setIsRemastering(Boolean isRemastering) {
+        this.isRemastering = isRemastering;
     }
 
-    private String dateField;
+    private String date;
 
     /**
      * @return the Date
      */
     public String getDate() {
-        return dateField;
+        return date;
     }
 
     /**
      * @param date the Date to set
      */
     public void setDate(String date) {
-        this.dateField = date;
+        this.date = date;
     }
 
-    private List<Location> locationsField;
+    private Location[] locations;
 
     /**
      * @return the Locations
      */
-    public List<Location> getLocations() {
-        return locationsField;
+    public Location[] getLocations() {
+        return locations;
     }
 
     /**
      * @param locations the Locations to set
      */
-    public void setLocations(List<Location> locations) {
-        this.locationsField = locations;
+    public void setLocations(Location[] locations) {
+        this.locations = locations;
     }
 
 }

@@ -1,91 +1,92 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Participation { 
-    private String activityLiteralField;
+public class Participation{
+    private String activityLiteral;
 
     /**
      * @return the ActivityLiteral
      */
     public String getActivityLiteral() {
-        return activityLiteralField;
+        return activityLiteral;
     }
 
     /**
      * @param activityLiteral the ActivityLiteral to set
      */
     public void setActivityLiteral(String activityLiteral) {
-        this.activityLiteralField = activityLiteral;
+        this.activityLiteral = activityLiteral;
     }
 
-    private List<Activity> activitiesField;
+    private Activity[] activities;
 
     /**
      * @return the Activities
      */
-    public List<Activity> getActivities() {
-        return activitiesField;
+    public Activity[] getActivities() {
+        return activities;
     }
 
     /**
      * @param activities the Activities to set
      */
-    public void setActivities(List<Activity> activities) {
-        this.activitiesField = activities;
+    public void setActivities(Activity[] activities) {
+        this.activities = activities;
     }
 
-    private boolean isFeaturedField;
+    private Boolean isFeatured;
 
     /**
      * @return the IsFeatured
      */
-    public boolean getIsFeatured() {
-        return isFeaturedField;
+    public Boolean getIsFeatured() {
+        return isFeatured;
     }
 
     /**
      * @param isFeatured the IsFeatured to set
      */
-    public void setIsFeatured(boolean isFeatured) {
-        this.isFeaturedField = isFeatured;
+    public void setIsFeatured(Boolean isFeatured) {
+        this.isFeatured = isFeatured;
     }
 
-    private String artistsLiteralField;
+    private String artistsLiteral;
 
     /**
      * @return the ArtistsLiteral
      */
     public String getArtistsLiteral() {
-        return artistsLiteralField;
+        return artistsLiteral;
     }
 
     /**
      * @param artistsLiteral the ArtistsLiteral to set
      */
     public void setArtistsLiteral(String artistsLiteral) {
-        this.artistsLiteralField = artistsLiteral;
+        this.artistsLiteral = artistsLiteral;
     }
 
-    private List<Artist> artistsField;
+    private Artist[] artists;
 
     /**
      * @return the Artists
      */
-    public List<Artist> getArtists() {
-        return artistsField;
+    public Artist[] getArtists() {
+        return artists;
     }
 
     /**
      * @param artists the Artists to set
      */
-    public void setArtists(List<Artist> artists) {
-        this.artistsField = artists;
+    public void setArtists(Artist[] artists) {
+        this.artists = artists;
     }
 
 }

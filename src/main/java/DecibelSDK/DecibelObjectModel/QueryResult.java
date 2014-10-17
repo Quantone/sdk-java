@@ -1,59 +1,60 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public abstract class QueryResult<TQuery, TDataObject> { 
-    private TQuery searchField;
+public abstract class QueryResult<TDataObject> extends BaseQueryResult<TDataObject>{
+    private Integer totalCount;
 
     /**
-     * @return the Search
+     * @return the TotalCount
      */
-    public TQuery getSearch() {
-        return searchField;
+    public Integer getTotalCount() {
+        return totalCount;
     }
 
     /**
-     * @param search the Search to set
+     * @param totalCount the TotalCount to set
      */
-    public void setSearch(TQuery search) {
-        this.searchField = search;
+    public void setTotalCount(Integer totalCount) {
+        this.totalCount = totalCount;
     }
 
-    private List<TDataObject> resultSetField;
+    private Integer pageCount;
 
     /**
-     * @return the ResultSet
+     * @return the PageCount
      */
-    public List<TDataObject> getResultSet() {
-        return resultSetField;
-    }
-
-    /**
-     * @param resultSet the ResultSet to set
-     */
-    public void setResultSet(List<TDataObject> resultSet) {
-        this.resultSetField = resultSet;
-    }
-
-    private Integer resultCountField;
-
-    /**
-     * @return the ResultCount
-     */
-    public Integer getResultCount() {
-        return resultCountField;
+    public Integer getPageCount() {
+        return pageCount;
     }
 
     /**
-     * @param resultCount the ResultCount to set
+     * @param pageCount the PageCount to set
      */
-    public void setResultCount(Integer resultCount) {
-        this.resultCountField = resultCount;
+    public void setPageCount(Integer pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    private Integer pageSize;
+
+    /**
+     * @return the PageSize
+     */
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    /**
+     * @param pageSize the PageSize to set
+     */
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
 }

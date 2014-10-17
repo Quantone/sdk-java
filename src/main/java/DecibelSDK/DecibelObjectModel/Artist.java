@@ -1,379 +1,380 @@
 package DecibelSDK.DecibelObjectModel;
 
 import DecibelSDK.InternalUtilities;
+import com.google.gson.annotations.SerializedName;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Artist extends DecibelEntity { 
-    private String idField;
+public class Artist extends DecibelEntity{
+    private String id;
 
     /**
      * @return the Id
      */
     public String getId() {
-        return idField;
+        return id;
     }
 
     /**
      * @param id the Id to set
      */
     public void setId(String id) {
-        this.idField = id;
+        this.id = id;
     }
 
-    private Probability probabilityField;
+    private Probability probability;
 
     /**
      * @return the Probability
      */
     public Probability getProbability() {
-        return probabilityField;
+        return probability;
     }
 
     /**
      * @param probability the Probability to set
      */
     public void setProbability(Probability probability) {
-        this.probabilityField = probability;
+        this.probability = probability;
     }
 
-    private String joinField;
+    private String join;
 
     /**
      * @return the Join
      */
     public String getJoin() {
-        return joinField;
+        return join;
     }
 
     /**
      * @param join the Join to set
      */
     public void setJoin(String join) {
-        this.joinField = join;
+        this.join = join;
     }
 
-    private AppearanceType appearanceTypeField;
+    private AppearanceType appearanceType;
 
     /**
      * @return the AppearanceType
      */
     public AppearanceType getAppearanceType() {
-        return appearanceTypeField;
+        return appearanceType;
     }
 
     /**
      * @param appearanceType the AppearanceType to set
      */
     public void setAppearanceType(AppearanceType appearanceType) {
-        this.appearanceTypeField = appearanceType;
+        this.appearanceType = appearanceType;
     }
 
-    private String nameField;
-
-    /**
-     * @return the Name
-     */
-    public String getName() {
-        return nameField;
-    }
-
-    /**
-     * @param name the Name to set
-     */
-    public void setName(String name) {
-        this.nameField = name;
-    }
-
-    private String nameLiteralField;
+    private String nameLiteral;
 
     /**
      * @return the NameLiteral
      */
     public String getNameLiteral() {
-        return nameLiteralField;
+        return nameLiteral;
     }
 
     /**
      * @param nameLiteral the NameLiteral to set
      */
     public void setNameLiteral(String nameLiteral) {
-        this.nameLiteralField = nameLiteral;
+        this.nameLiteral = nameLiteral;
     }
 
-    private String stageNameField;
+    private String stageName;
 
     /**
      * @return the StageName
      */
     public String getStageName() {
-        return stageNameField;
+        return stageName;
     }
 
     /**
      * @param stageName the StageName to set
      */
     public void setStageName(String stageName) {
-        this.stageNameField = stageName;
+        this.stageName = stageName;
     }
 
-    private String realNameField;
+    private String legalName;
 
     /**
-     * @return the RealName
+     * @return the LegalName
      */
-    public String getRealName() {
-        return realNameField;
-    }
-
-    /**
-     * @param realName the RealName to set
-     */
-    public void setRealName(String realName) {
-        this.realNameField = realName;
-    }
-
-    private String datesField;
-
-    /**
-     * @return the Dates
-     */
-    public String getDates() {
-        return datesField;
+    public String getLegalName() {
+        return legalName;
     }
 
     /**
-     * @param dates the Dates to set
+     * @param legalName the LegalName to set
      */
-    public void setDates(String dates) {
-        this.datesField = dates;
+    public void setLegalName(String legalName) {
+        this.legalName = legalName;
     }
 
-    private String membershipDetailsField;
+    private String membershipDate;
 
     /**
-     * @return the MembershipDetails
+     * @return the MembershipDate
      */
-    public String getMembershipDetails() {
-        return membershipDetailsField;
+    public String getMembershipDate() {
+        return membershipDate;
     }
 
     /**
-     * @param membershipDetails the MembershipDetails to set
+     * @param membershipDate the MembershipDate to set
      */
-    public void setMembershipDetails(String membershipDetails) {
-        this.membershipDetailsField = membershipDetails;
+    public void setMembershipDate(String membershipDate) {
+        this.membershipDate = membershipDate;
     }
 
-    private ArtistType artistTypeField;
+    private ArtistType artistType;
 
     /**
      * @return the ArtistType
      */
     public ArtistType getArtistType() {
-        return artistTypeField;
+        return artistType;
     }
 
     /**
      * @param artistType the ArtistType to set
      */
     public void setArtistType(ArtistType artistType) {
-        this.artistTypeField = artistType;
+        this.artistType = artistType;
     }
 
-    private Gender genderField;
+    private Gender gender;
 
     /**
      * @return the Gender
      */
     public Gender getGender() {
-        return genderField;
+        return gender;
     }
 
     /**
      * @param gender the Gender to set
      */
     public void setGender(Gender gender) {
-        this.genderField = gender;
+        this.gender = gender;
     }
 
-    private boolean isFictionalField;
+    private Boolean isFictional;
 
     /**
      * @return the IsFictional
      */
-    public boolean getIsFictional() {
-        return isFictionalField;
+    public Boolean getIsFictional() {
+        return isFictional;
     }
 
     /**
      * @param isFictional the IsFictional to set
      */
-    public void setIsFictional(boolean isFictional) {
-        this.isFictionalField = isFictional;
+    public void setIsFictional(Boolean isFictional) {
+        this.isFictional = isFictional;
     }
 
-    private List<Genre> genresField;
+    private Genre[] genres;
 
     /**
      * @return the Genres
      */
-    public List<Genre> getGenres() {
-        return genresField;
+    public Genre[] getGenres() {
+        return genres;
     }
 
     /**
      * @param genres the Genres to set
      */
-    public void setGenres(List<Genre> genres) {
-        this.genresField = genres;
+    public void setGenres(Genre[] genres) {
+        this.genres = genres;
     }
 
-    private String birthDateField;
+    private String birthDate;
 
     /**
      * @return the BirthDate
      */
     public String getBirthDate() {
-        return birthDateField;
+        return birthDate;
     }
 
     /**
      * @param birthDate the BirthDate to set
      */
     public void setBirthDate(String birthDate) {
-        this.birthDateField = birthDate;
+        this.birthDate = birthDate;
     }
 
-    private String deathDateField;
+    private String deathDate;
 
     /**
      * @return the DeathDate
      */
     public String getDeathDate() {
-        return deathDateField;
+        return deathDate;
     }
 
     /**
      * @param deathDate the DeathDate to set
      */
     public void setDeathDate(String deathDate) {
-        this.deathDateField = deathDate;
+        this.deathDate = deathDate;
     }
 
-    private String birthPlaceField;
+    private String birthPlace;
 
     /**
      * @return the BirthPlace
      */
     public String getBirthPlace() {
-        return birthPlaceField;
+        return birthPlace;
     }
 
     /**
      * @param birthPlace the BirthPlace to set
      */
     public void setBirthPlace(String birthPlace) {
-        this.birthPlaceField = birthPlace;
+        this.birthPlace = birthPlace;
     }
 
-    private String deathPlaceField;
+    private String deathPlace;
 
     /**
      * @return the DeathPlace
      */
     public String getDeathPlace() {
-        return deathPlaceField;
+        return deathPlace;
     }
 
     /**
      * @param deathPlace the DeathPlace to set
      */
     public void setDeathPlace(String deathPlace) {
-        this.deathPlaceField = deathPlace;
+        this.deathPlace = deathPlace;
     }
 
-    private List<Annotation> annotationsField;
+    private Annotation[] biographies;
 
     /**
-     * @return the Annotations
+     * @return the Biographies
      */
-    public List<Annotation> getAnnotations() {
-        return annotationsField;
-    }
-
-    /**
-     * @param annotations the Annotations to set
-     */
-    public void setAnnotations(List<Annotation> annotations) {
-        this.annotationsField = annotations;
-    }
-
-    private List<Url> urlsField;
-
-    /**
-     * @return the Urls
-     */
-    public List<Url> getUrls() {
-        return urlsField;
+    public Annotation[] getBiographies() {
+        return biographies;
     }
 
     /**
-     * @param urls the Urls to set
+     * @param biographies the Biographies to set
      */
-    public void setUrls(List<Url> urls) {
-        this.urlsField = urls;
+    public void setBiographies(Annotation[] biographies) {
+        this.biographies = biographies;
     }
 
-    private List<Artist> membersField;
+    private Annotation[] shortDescriptions;
+
+    /**
+     * @return the ShortDescriptions
+     */
+    public Annotation[] getShortDescriptions() {
+        return shortDescriptions;
+    }
+
+    /**
+     * @param shortDescriptions the ShortDescriptions to set
+     */
+    public void setShortDescriptions(Annotation[] shortDescriptions) {
+        this.shortDescriptions = shortDescriptions;
+    }
+
+    private WebAddress[] webAddresses;
+
+    /**
+     * @return the WebAddresses
+     */
+    public WebAddress[] getWebAddresses() {
+        return webAddresses;
+    }
+
+    /**
+     * @param webAddresses the WebAddresses to set
+     */
+    public void setWebAddresses(WebAddress[] webAddresses) {
+        this.webAddresses = webAddresses;
+    }
+
+    private Artist[] members;
 
     /**
      * @return the Members
      */
-    public List<Artist> getMembers() {
-        return membersField;
+    public Artist[] getMembers() {
+        return members;
     }
 
     /**
      * @param members the Members to set
      */
-    public void setMembers(List<Artist> members) {
-        this.membersField = members;
+    public void setMembers(Artist[] members) {
+        this.members = members;
     }
 
-    private List<Artist> groupsField;
+    private Artist[] groups;
 
     /**
      * @return the Groups
      */
-    public List<Artist> getGroups() {
-        return groupsField;
+    public Artist[] getGroups() {
+        return groups;
     }
 
     /**
      * @param groups the Groups to set
      */
-    public void setGroups(List<Artist> groups) {
-        this.groupsField = groups;
+    public void setGroups(Artist[] groups) {
+        this.groups = groups;
     }
 
-    private List<Identifier> identifiersField;
+    private Artist[] relatedArtists;
+
+    /**
+     * @return the RelatedArtists
+     */
+    public Artist[] getRelatedArtists() {
+        return relatedArtists;
+    }
+
+    /**
+     * @param relatedArtists the RelatedArtists to set
+     */
+    public void setRelatedArtists(Artist[] relatedArtists) {
+        this.relatedArtists = relatedArtists;
+    }
+
+    private ArtistIdentifier[] identifiers;
 
     /**
      * @return the Identifiers
      */
-    public List<Identifier> getIdentifiers() {
-        return identifiersField;
+    public ArtistIdentifier[] getIdentifiers() {
+        return identifiers;
     }
 
     /**
      * @param identifiers the Identifiers to set
      */
-    public void setIdentifiers(List<Identifier> identifiers) {
-        this.identifiersField = identifiers;
+    public void setIdentifiers(ArtistIdentifier[] identifiers) {
+        this.identifiers = identifiers;
     }
 
 }

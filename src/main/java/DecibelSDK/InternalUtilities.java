@@ -3,7 +3,7 @@ package DecibelSDK;
 import java.net.URLConnection;
 
 public class InternalUtilities {
-    public static final String BASEURL = "http://localhost:8080/v3/";
+    public static final String BASEURL = "https://rest.decibel.net/v3/";
     
     /**
      * Sets the HttpGet request headers

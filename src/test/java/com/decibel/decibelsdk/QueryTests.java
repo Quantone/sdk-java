@@ -297,7 +297,7 @@ public class QueryTests {
         }
     }
     
-    @Test(expected=DecibelException.class) // TODO: check this is how exception checking works in JUnit
+    @Test(expected=DecibelException.class)
     public void queryWithError() throws DecibelException{
         // Arrange
         Decibel badDecibel = new Decibel("", "");

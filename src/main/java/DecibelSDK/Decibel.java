@@ -92,10 +92,9 @@ public class Decibel {
               is.close();
             }
         }catch (IOException ex){
-            // TODO: improve error handling here to match C# version
             throw new DecibelException(ex.getMessage());
         }catch (IllegalStateException ex) {
-            throw new DecibelException(ex.getMessage()); // TODO: maybe add our own error message
+            throw new DecibelException(ex.getMessage()); 
         } catch (URISyntaxException ex) {
             throw new DecibelException(ex.getMessage());
         } 

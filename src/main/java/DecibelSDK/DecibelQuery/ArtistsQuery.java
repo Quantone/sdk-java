@@ -221,7 +221,6 @@ public class ArtistsQuery implements Query<ArtistsQueryResult>{
         StringBuilder queryStr = new StringBuilder(InternalUtilities.BASEURL);
         queryStr.append("Artists?");
 
-
         queryStr.append(valueOrDefault("orderby", orderBy, null));
         queryStr.append(valueOrDefault("depth", depth, null));
         queryStr.append(valueOrDefault("namesearchtype", nameSearchType, ArtistSearchType.FULLNAME));
@@ -242,7 +241,7 @@ public class ArtistsQuery implements Query<ArtistsQueryResult>{
     private static String valueOrDefault(String paramName, Object value, Object defaultValue){
         if(value == null || value.equals(defaultValue)) return "";
         if(!value.getClass().toString().toLowerCase().contains("array"))
-            return value == defaultValue ? "" : paramName + "=" + value + "&";
+            return value == defaultValue ? "" : paramName + "=" + value.toString().replace("[", "").replace("]", "") + "&";
 
         StringBuilder queryStr = new StringBuilder();
         queryStr.append(paramName).append("=");

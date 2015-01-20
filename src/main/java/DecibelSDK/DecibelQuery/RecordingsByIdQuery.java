@@ -61,7 +61,6 @@ public class RecordingsByIdQuery implements Query<RecordingsByIdQueryResult>{
         StringBuilder queryStr = new StringBuilder(InternalUtilities.BASEURL);
         queryStr.append("Recordings/").append(id).append("?");
 
-
         queryStr.append(valueOrDefault("depth", depth, null));
         queryStr.append(valueOrDefault("language", language, null));
 
@@ -71,7 +70,7 @@ public class RecordingsByIdQuery implements Query<RecordingsByIdQueryResult>{
     private static String valueOrDefault(String paramName, Object value, Object defaultValue){
         if(value == null || value.equals(defaultValue)) return "";
         if(!value.getClass().toString().toLowerCase().contains("array"))
-            return value == defaultValue ? "" : paramName + "=" + value + "&";
+            return value == defaultValue ? "" : paramName + "=" + value.toString().replace("[", "").replace("]", "") + "&";
 
         StringBuilder queryStr = new StringBuilder();
         queryStr.append(paramName).append("=");

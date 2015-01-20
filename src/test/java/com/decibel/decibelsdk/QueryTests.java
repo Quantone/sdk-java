@@ -3,6 +3,7 @@ package com.decibel.decibelsdk;
 import DecibelSDK.*;
 import DecibelSDK.DecibelObjectModel.*;
 import DecibelSDK.DecibelQuery.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +21,7 @@ public class QueryTests {
     }
     
     @Test
-    public void albumsQuery(){
+    public void albumsQuery(){        
         // Arrange
         AlbumsQuery qo = new AlbumsQuery();
         qo.setTitle(TestDataEntities.Rumours().getTitle());

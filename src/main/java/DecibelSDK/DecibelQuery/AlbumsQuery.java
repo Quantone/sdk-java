@@ -397,7 +397,6 @@ public class AlbumsQuery implements Query<AlbumsQueryResult>{
         StringBuilder queryStr = new StringBuilder(InternalUtilities.BASEURL);
         queryStr.append("Albums?");
 
-
         queryStr.append(valueOrDefault("artists", artists, null));
         queryStr.append(valueOrDefault("artistids", artistIds, null));
         queryStr.append(valueOrDefault("participants", participants, null));
@@ -429,7 +428,7 @@ public class AlbumsQuery implements Query<AlbumsQueryResult>{
     private static String valueOrDefault(String paramName, Object value, Object defaultValue){
         if(value == null || value.equals(defaultValue)) return "";
         if(!value.getClass().toString().toLowerCase().contains("array"))
-            return value == defaultValue ? "" : paramName + "=" + value + "&";
+            return value == defaultValue ? "" : paramName + "=" + value.toString().replace("[", "").replace("]", "") + "&";
 
         StringBuilder queryStr = new StringBuilder();
         queryStr.append(paramName).append("=");

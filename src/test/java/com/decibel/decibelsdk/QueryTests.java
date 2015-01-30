@@ -3,7 +3,6 @@ package com.decibel.decibelsdk;
 import DecibelSDK.*;
 import DecibelSDK.DecibelObjectModel.*;
 import DecibelSDK.DecibelQuery.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,301 +10,304 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 public class QueryTests {
-    private Decibel myDecibel;
-    
+private Decibel myDecibel;
+
     @Before
     public void initialise(){
-        myDecibel = new Decibel("{YOUR_APP_ID}", "{YOUR_APP_KEY}");
+        myDecibel = new Decibel("5589c9d1", "4154f53630c5cffd106cbe3ba0bd1eff");
     }
-    
     @Test
-    public void albumsQuery(){        
+    public void imagesByIdQuery() {
         // Arrange
-        AlbumsQuery qo = new AlbumsQuery();
-        qo.setTitle(TestDataEntities.Rumours().getTitle());
-        qo.setDateReleased(TestDataEntities.Rumours().getOriginalReleaseDate());
-        qo.setDepth(Arrays.asList(
-                AlbumRetrievalDepth.RECORDINGS, 
-                AlbumRetrievalDepth.IDENTIFIERS,
-                AlbumRetrievalDepth.PARTICIPATIONS,
-                AlbumRetrievalDepth.GENRES,
-                AlbumRetrievalDepth.ARTISTDETAILS,
-                AlbumRetrievalDepth.RELEASES
-        ));
-        qo.setTitleSearchType(AlbumSearchType.FULLNAME);
-        qo.setArtists(Arrays.asList(TestDataEntities.FleetwoodMac().getNameLiteral()));
-        qo.setRecordings(Arrays.asList(TestDataEntities.GoYourOwnWay().getTitle()));
-        
+        ImagesByIdQuery qo = new ImagesByIdQuery();
+        qo.setId("5abb0387-9440-4273-aa20-bff159a89205");
+
+        // Act
         try {
-            // Act
-            AlbumsQueryResult qr = myDecibel.Execute(qo);
-            Album result = qr.getResults().get(0);
-            
+            ImagesByIdQueryResult qr = myDecibel.Execute(qo);
+            Image result = qr.getResult();
+
             // Assert
-            Assert.assertEquals(TestDataEntities.Rumours().getArtistsLiteral(), result.getArtistsLiteral());
-            Assert.assertEquals(TestDataEntities.Rumours().getTitle(), result.getTitle());
-            Assert.assertEquals(TestDataEntities.Rumours().getOriginalReleaseDate(), result.getOriginalReleaseDate());
-            
-            Recording[] recordings = result.getRecordings();
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getId(), recordings[0].getId());
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getTitle(), recordings[0].getTitle());
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getOriginalAlbumTitle(), recordings[0].getOriginalAlbumTitle());
-            
-            Identifier[] identifiers = result.getIdentifiers();
-            Assert.assertEquals(1, identifiers.length);
-            Assert.assertEquals(TestDataEntities.RumoursDiscogsId().getValue(), identifiers[0].getValue());
-            
-            Participation[] participations = result.getParticipations();
-            Assert.assertEquals(1, participations.length);
-            Assert.assertEquals(TestDataEntities.HerbertWorthington().getActivityLiteral(), participations[0].getActivityLiteral());
-            Assert.assertEquals(TestDataEntities.HerbertWorthington().getArtistsLiteral(), participations[0].getArtistsLiteral());
-            
-            Genre[] genres = result.getGenres();
-            Assert.assertEquals(1, genres.length);
-            Assert.assertEquals(TestDataEntities.BluesRock().getName(), genres[0].getName());
-            
-            Artist[] artists = result.getArtists();
-            Assert.assertEquals(1, artists.length);
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getId(), artists[0].getId());
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getNameLiteral(), artists[0].getNameLiteral());
-            
-            Release[] releases = result.getReleases();
-            Assert.assertEquals(1, releases.length);
-            Assert.assertEquals(TestDataEntities.RepriseRecords1975().getId(), releases[0].getId());
-            Assert.assertEquals(TestDataEntities.RepriseRecords1975().getReleaseDate(), releases[0].getReleaseDate());
-            Assert.assertEquals(TestDataEntities.RepriseRecords1975().getLabelLiteral(), releases[0].getLabelLiteral());
-            Assert.assertEquals(TestDataEntities.RepriseRecords1975().getReleaseRegionLiteral(), releases[0].getReleaseRegionLiteral());
-            
+            Assert.assertEquals("5abb0387-9440-4273-aa20-bff159a89205", result.getId());
+            Assert.assertEquals(ImageSize.STANDARD, result.getSize());
         } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
         }
     }
-    
+
     @Test
-    public void singleAlbumsQuery(){
+    public void albumsQuery() {
+        // Arrange
+        AlbumsQuery qo = new AlbumsQuery();
+        qo.setTitle("Rumours");
+        qo.setDateReleased("1977");
+        qo.setDepth(Arrays.asList(AlbumRetrievalDepth.RECORDINGS,AlbumRetrievalDepth.IDENTIFIERS,AlbumRetrievalDepth.PARTICIPATIONS,AlbumRetrievalDepth.GENRES,AlbumRetrievalDepth.ARTISTDETAILS,AlbumRetrievalDepth.RELEASES));
+        qo.setTitleSearchType(AlbumSearchType.FULLNAME);
+        qo.setArtists(Arrays.asList("Fleetwood Mac"));
+        qo.setParticipants(Arrays.asList("Herbert Worthington"));
+        qo.setRecordings(Arrays.asList("Go Your Own Way"));
+
+        // Act
+        try {
+            AlbumsQueryResult qr = myDecibel.Execute(qo);
+            Album result = qr.getResults().get(0);
+
+            // Assert
+            Assert.assertEquals("Fleetwood Mac", result.getArtistsLiteral());
+            Assert.assertEquals("Rumours", result.getTitle());
+            Assert.assertEquals("1977", result.getOriginalReleaseDate());
+
+            Recording recordings = result.getRecordings()[0];
+            Assert.assertEquals("f0be5d06-bf74-11e3-be9b-ac220b82800d", recordings.getId());
+            Assert.assertEquals("Go Your Own Way", recordings.getTitle());
+            Assert.assertEquals("Wolfram Huschke", recordings.getOriginalAlbumTitle());
+
+            AlbumIdentifier identifiers = result.getIdentifiers()[0];
+            Assert.assertEquals(AlbumIdType.DISCOGSMASTER, identifiers.getIdentifierType());
+            Assert.assertEquals("m2", identifiers.getValue());
+
+            Participation participations = result.getParticipations()[0];
+            Assert.assertEquals("Photography By", participations.getActivityLiteral());
+            Assert.assertEquals("Herbert Worthington", participations.getArtistsLiteral());
+
+            Genre genres = result.getGenres()[0];
+            Assert.assertEquals("blues rock", genres.getName());
+
+            Artist artists = result.getArtists()[0];
+            Assert.assertEquals("4aea91de-318f-e311-be87-ac220b82800d", artists.getId());
+            Assert.assertEquals("Fleetwood Mac", artists.getNameLiteral());
+
+            Release releases = result.getReleases()[0];
+            Assert.assertEquals("baee8712-368f-e311-be87-ac220b82800d", releases.getId());
+            Assert.assertEquals("1975", releases.getReleaseDate());
+            Assert.assertEquals("Reprise Records", releases.getLabelLiteral());
+            Assert.assertEquals("US", releases.getReleaseRegionLiteral());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void albumsByIdQuery() {
         // Arrange
         AlbumsByIdQuery qo = new AlbumsByIdQuery();
-        qo.setId(TestDataEntities.Rumours().getId());
-        qo.setDepth(Arrays.asList(new AlbumRetrievalDepth[]{AlbumRetrievalDepth.ARTISTDETAILS}));
-        
-        try{
-            // Act
+        qo.setId("156dda6c-358f-e311-be87-ac220b82800d");
+        qo.setDepth(Arrays.asList(AlbumRetrievalDepth.ARTISTDETAILS));
+
+        // Act
+        try {
             AlbumsByIdQueryResult qr = myDecibel.Execute(qo);
             Album result = qr.getResult();
-            
-            // Assert
-            Assert.assertEquals(TestDataEntities.Rumours().getId(), result.getId());
-            Assert.assertEquals(TestDataEntities.Rumours().getArtistsLiteral(), result.getArtistsLiteral());
-            Assert.assertEquals(TestDataEntities.Rumours().getTitle(), result.getTitle());
-            Assert.assertEquals(TestDataEntities.Rumours().getOriginalReleaseDate(), result.getOriginalReleaseDate());
-            
-        }catch(DecibelException ex){
-            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
-        }
-    }
-    
-    @Test
-    public void artistsQuery(){
-        // Arrange
-        ArtistsQuery qo = new ArtistsQuery();
-        qo.setName(TestDataEntities.FleetwoodMac().getNameLiteral());
-        qo.setDepth(Arrays.asList(
-                ArtistRetrievalDepth.IDENTIFIERS,
-                ArtistRetrievalDepth.BIOGRAPHY,
-                ArtistRetrievalDepth.MEMBERS,
-                ArtistRetrievalDepth.DATES,
-                ArtistRetrievalDepth.GENRES,
-                ArtistRetrievalDepth.URLS
-        ));
-        qo.setNameSearchType(ArtistSearchType.FULLNAME);
-        
-        try{
-            // Act
-            ArtistsQueryResult qr = myDecibel.Execute(qo);
-            Artist result = qr.getResults().get(0);
-            
-            // Assert
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getId(), result.getId());
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getNameLiteral(), result.getStageName());
-            
-            ArtistIdentifier[] identifiers = result.getIdentifiers();
-            Assert.assertEquals(1, identifiers.length);
-            Assert.assertEquals(TestDataEntities.FleetwoodMacDiscogsId().getIdentifierType(), 
-                    identifiers[0].getIdentifierType());
-            Assert.assertEquals(TestDataEntities.FleetwoodMacDiscogsId().getValue(), identifiers[0].getValue());
 
-            Annotation[] biographies = result.getBiographies();
-            Assert.assertEquals(1, biographies.length);
-            
-            Artist[] members = result.getMembers();
-            Artist bobWelch = null;
-            for(Artist member : members){
-                if(member.getStageName().equals(TestDataEntities.BobWelch().getNameLiteral()))
-                    bobWelch = member;
-            }
-            Assert.assertNotNull(bobWelch);
-            Assert.assertEquals(TestDataEntities.BobWelch().getBirthDate(), bobWelch.getBirthDate());
-            Assert.assertEquals(TestDataEntities.BobWelch().getBirthPlace(), bobWelch.getBirthPlace());
-            Assert.assertEquals(TestDataEntities.BobWelch().getDeathDate(), bobWelch.getDeathDate());
-            Assert.assertEquals(TestDataEntities.BobWelch().getDeathPlace(), bobWelch.getDeathPlace());
-            
-            Genre[] genres = result.getGenres();
-            Assert.assertEquals(1, genres.length);
-            Assert.assertEquals(TestDataEntities.BluesRock().getName(), genres[0].getName());
-
-            WebAddress[] urls = result.getWebAddresses();
-            Assert.assertEquals(1, urls.length);
-            Assert.assertEquals(TestDataEntities.FleetwoodmacDotCom().getAddress(), urls[0].getAddress());
-            
-        }catch(DecibelException ex){
-            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
-        }
-    }
-    
-    @Test
-    public void singleArtistQuery(){
-        // Arrange
-        ArtistsByIdQuery qo = new ArtistsByIdQuery();
-        qo.setId(TestDataEntities.MickFleetwood().getId());
-        qo.setDepth(Arrays.asList(
-                new ArtistRetrievalDepth[]{
-                    ArtistRetrievalDepth.GROUPS, 
-                    ArtistRetrievalDepth.DATES
-                }));
-        
-        try{
-            // Act
-            ArtistsByIdQueryResult qr = myDecibel.Execute(qo);
-            Artist result = qr.getResult();
-            
             // Assert
-            Assert.assertEquals(TestDataEntities.MickFleetwood().getId(), result.getId());
-            Assert.assertEquals(TestDataEntities.MickFleetwood().getNameLiteral(), result.getStageName());
-            
-            Artist[] groups = result.getGroups();
-            Assert.assertEquals(1, groups.length);
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getNameLiteral(), groups[0].getStageName());
-            
-        }catch(DecibelException ex){
+            Assert.assertEquals("156dda6c-358f-e311-be87-ac220b82800d", result.getId());
+            Assert.assertEquals("Fleetwood Mac", result.getArtistsLiteral());
+            Assert.assertEquals("Rumours", result.getTitle());
+            Assert.assertEquals("1977", result.getOriginalReleaseDate());
+        } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
         }
     }
-    
+
     @Test
-    public void recordingQuery(){
+    public void locationsByIdQuery() {
+        // Arrange
+        LocationsByIdQuery qo = new LocationsByIdQuery();
+        qo.setId("ac05eb0b-0bef-426e-9d9c-8e8562ba57bc");
+        qo.setDepth(Arrays.asList(LocationRetrievalDepth.IDENTIFIERS,LocationRetrievalDepth.PARENTLOCATIONS));
+
+        // Act
+        try {
+            LocationsByIdQueryResult qr = myDecibel.Execute(qo);
+            Location result = qr.getResult();
+
+            // Assert
+            Assert.assertEquals("ac05eb0b-0bef-426e-9d9c-8e8562ba57bc", result.getId());
+            Assert.assertEquals("Bottom Location", result.getName());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void locationsQuery() {
+        // Arrange
+        LocationsQuery qo = new LocationsQuery();
+        qo.setId("ac05eb0b-0bef-426e-9d9c-8e8562ba57bc");
+        qo.setDepth(Arrays.asList(LocationRetrievalDepth.IDENTIFIERS,LocationRetrievalDepth.PARENTLOCATIONS));
+
+        // Act
+        try {
+            LocationsQueryResult qr = myDecibel.Execute(qo);
+            Location result = qr.getResults().get(0);
+
+            // Assert
+            Assert.assertEquals("ac05eb0b-0bef-426e-9d9c-8e8562ba57bc", result.getId());
+
+            LocationIdentifier identifiers = result.getIdentifiers()[0];
+            Assert.assertEquals(LocationIdType.GEONAMES, identifiers.getIdentifierType());
+            Assert.assertEquals("102", identifiers.getValue());
+
+            Location parentLocations = result.getParentLocations()[0];
+            Assert.assertEquals("c6f42e79-32f5-4b70-85b6-54c9eae655ad", parentLocations.getId());
+            Assert.assertEquals("Middle Location", parentLocations.getName());
+            Assert.assertEquals("4ed08017-989c-406d-a865-7c65789c8f25", parentLocations.getParentLocations.First().Id());
+            Assert.assertEquals("Top Location", parentLocations.getParentLocations.First().Name());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void recordingsQuery() {
         // Arrange
         RecordingsQuery qo = new RecordingsQuery();
-        qo.setTitle(TestDataEntities.GoYourOwnWay().getTitle());
-        qo.setDepth(Arrays.asList(
-                RecordingRetrievalDepth.PARTICIPATIONS,
-                RecordingRetrievalDepth.ARTISTDETAILS,
-                RecordingRetrievalDepth.WORKS,
-                RecordingRetrievalDepth.GENRES,
-                RecordingRetrievalDepth.IDENTIFIERS,
-                RecordingRetrievalDepth.SESSIONINFO
-        ));
+        qo.setTitle("Go Your Own Way");
+        qo.setDepth(Arrays.asList(RecordingRetrievalDepth.PARTICIPATIONS,RecordingRetrievalDepth.ARTISTDETAILS,RecordingRetrievalDepth.WORKS,RecordingRetrievalDepth.GENRES,RecordingRetrievalDepth.IDENTIFIERS,RecordingRetrievalDepth.SESSIONINFO));
         qo.setTitleSearchType(RecordingSearchType.FULLNAME);
-        qo.setArtists(Arrays.asList(TestDataEntities.FleetwoodMac().getNameLiteral()));
-        qo.setComposers(Arrays.asList(TestDataEntities.WilsonPhillips().getNameLiteral()));
-        qo.setDateMade(TestDataEntities.GoYourOwnWay().getOriginalReleaseDate());
-        qo.setIsLive(TestDataEntities.GoYourOwnWay().getIsLive());
-        qo.setParticipants(Arrays.asList(TestDataEntities.LindseyBuckingham().getNameLiteral()));
-        
-        try{
-            // Act
+        qo.setArtists(Arrays.asList("Fleetwood Mac"));
+        qo.setComposers(Arrays.asList("WilsonPhillips"));
+        qo.setIsLive(true);
+        qo.setParticipants(Arrays.asList("Lindsey Buckingham"));
+
+        // Act
+        try {
             RecordingsQueryResult qr = myDecibel.Execute(qo);
             Recording result = qr.getResults().get(0);
-            
+
             // Assert
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getId(), result.getId());
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getTitle(), result.getTitle());
-            
-            Participation[] participations = result.getParticipations();
-            Assert.assertEquals(1, participations.length);
-            Assert.assertEquals(TestDataEntities.LindseyBuckinghamParticipation().getActivityLiteral(), participations[0].getActivityLiteral());
-            Assert.assertEquals(TestDataEntities.LindseyBuckinghamParticipation().getArtistsLiteral(), participations[0].getArtistsLiteral());
+            Assert.assertEquals("f0be5d06-bf74-11e3-be9b-ac220b82800d", result.getId());
+            Assert.assertEquals("Wolfram Huschke", result.getOriginalAlbumTitle());
 
-            Artist[] artistDetails = result.getArtists();
-            Assert.assertEquals(1, artistDetails.length);
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getId(), artistDetails[0].getId());
-            Assert.assertEquals(TestDataEntities.FleetwoodMac().getNameLiteral(), artistDetails[0].getNameLiteral());
+            Participation participations = result.getParticipations()[0];
+            Assert.assertEquals("Guitar [Guitars]", participations.getActivityLiteral());
+            Assert.assertEquals("Lindsey Buckingham", participations.getArtistsLiteral());
 
-            Work[] works = result.getWorks();
-            Assert.assertEquals(1, works.length);
-            Assert.assertEquals(TestDataEntities.GoYourOwnWayWork().getId(), works[0].getId());
-            Assert.assertEquals(TestDataEntities.GoYourOwnWayWork().getName(), works[0].getName());
-            Assert.assertEquals(TestDataEntities.GoYourOwnWayWork().getRecordingSequence(), works[0].getRecordingSequence());
-            
-            Participation[] workParticipations = works[0].getParticipations();
-            Assert.assertEquals(1, workParticipations.length);
-            Assert.assertEquals(TestDataEntities.WorkComposerParticipation().getActivityLiteral(), workParticipations[0].getActivityLiteral());
-            Assert.assertEquals(TestDataEntities.WorkComposerParticipation().getArtistsLiteral(), workParticipations[0].getArtistsLiteral());
-            Assert.assertEquals(TestDataEntities.WorkComposerParticipation().getIsFeatured(), workParticipations[0].getIsFeatured());
+            Artist artists = result.getArtists()[0];
+            Assert.assertEquals("4aea91de-318f-e311-be87-ac220b82800d", artists.getId());
+            Assert.assertEquals("Fleetwood Mac", artists.getNameLiteral());
 
-            Artist[] workParticipationArtists = workParticipations[0].getArtists();
-            Assert.assertEquals(1, workParticipationArtists.length);
-            Assert.assertEquals(TestDataEntities.WilsonPhillips().getId(), workParticipationArtists[0].getId());
-            Assert.assertEquals(TestDataEntities.WilsonPhillips().getNameLiteral(), workParticipationArtists[0].getStageName());
-            Assert.assertEquals(TestDataEntities.WilsonPhillips().getGender(), workParticipationArtists[0].getGender());
-           
-            Activity[] workParticipationActivities = workParticipations[0].getActivities();
-            Assert.assertEquals(1, workParticipationActivities.length);
-            Assert.assertEquals(TestDataEntities.Composition().getName(), workParticipationActivities[0].getName());
-            
-            Genre[] genres = result.getGenres();
-            Assert.assertEquals(1, genres.length);
-            Assert.assertEquals(TestDataEntities.BluesRock().getName(), genres[0].getName());
-            
-            ProductionEvent[] productionEvents = result.getProductionEvents();
-            Assert.assertEquals(1, productionEvents.length);
-            Assert.assertEquals(TestDataEntities.SessionInfo().getIsRecording(), productionEvents[0].getIsRecording());
-            Assert.assertEquals(TestDataEntities.SessionInfo().getDate(), productionEvents[0].getDate());
-            
-        }catch(DecibelException ex){
+            Work works = result.getWorks()[0];
+            Assert.assertEquals("3f9f1c81-b6ef-11e3-be98-ac220b82800d", works.getId());
+            Assert.assertEquals("Go Your Own Way", works.getName());
+
+            Genre genres = result.getGenres()[0];
+            Assert.assertEquals("blues rock", genres.getName());
+        } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
         }
     }
-    
+
     @Test
-    public void singleRecordingQuery(){
+    public void recordingsByIdQuery() {
         // Arrange
         RecordingsByIdQuery qo = new RecordingsByIdQuery();
-        qo.setId(TestDataEntities.GoYourOwnWay().getId());
-        qo.setDepth(Arrays.asList(
-                new RecordingRetrievalDepth[]{
-                    RecordingRetrievalDepth.IDENTIFIERS,
-                }));
-        
-        try{
-            // Act
+        qo.setId("f0be5d06-bf74-11e3-be9b-ac220b82800d");
+        qo.setDepth(Arrays.asList(RecordingRetrievalDepth.IDENTIFIERS));
+
+        // Act
+        try {
             RecordingsByIdQueryResult qr = myDecibel.Execute(qo);
             Recording result = qr.getResult();
-            
+
             // Assert
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getId(), result.getId());
-            Assert.assertEquals(TestDataEntities.GoYourOwnWay().getTitle(), result.getTitle());
-            
-        }catch(DecibelException ex){
+            Assert.assertEquals("f0be5d06-bf74-11e3-be9b-ac220b82800d", result.getId());
+            Assert.assertEquals("Wolfram Huschke", result.getOriginalAlbumTitle());
+        } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-            Assert.fail();
         }
     }
-    
+
+    @Test
+    public void discTagsQuery() {
+        // Arrange
+        DiscTagsQuery qo = new DiscTagsQuery();
+        qo.setTaggedItemId("156dda6c-358f-e311-be87-ac220b82800d");
+        qo.setIdType(DiscTagIdType.DECIBELALBUM);
+
+        // Act
+        try {
+            DiscTagsQueryResult qr = myDecibel.Execute(qo);
+            DiscTag result = qr.getResults().get(0);
+
+            // Assert
+
+            DiscTag fileTags = result.getFileTags()[0];
+            Assert.assertEquals("4011222327628", fileTags.getAlbumEAN());
+            Assert.assertEquals("156dda6c-358f-e311-be87-ac220b82800d", fileTags.getAlbumId());
+            Assert.assertEquals("baee8712-368f-e311-be87-ac220b82800d", fileTags.getAlbumMediumId());
+            Assert.assertEquals("Rumours", fileTags.getAlbumTitle());
+            Assert.assertEquals("TestCatNum", fileTags.getCatalogNum());
+            Assert.assertEquals(1, fileTags.getDiscCount());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void artistsQuery() {
+        // Arrange
+        ArtistsQuery qo = new ArtistsQuery();
+        qo.setName("Bob Welch");
+        qo.setDepth(Arrays.asList(ArtistRetrievalDepth.IDENTIFIERS,ArtistRetrievalDepth.BIOGRAPHY,ArtistRetrievalDepth.MEMBERS,ArtistRetrievalDepth.DATES,ArtistRetrievalDepth.GENRES,ArtistRetrievalDepth.URLS));
+        qo.setNameSearchType(ArtistSearchType.FULLNAME);
+        qo.setDateBorn("1945-08-31");
+        qo.setDateDied("2012-06-07");
+        qo.setGender(Gender.MALE);
+
+        // Act
+        try {
+            ArtistsQueryResult qr = myDecibel.Execute(qo);
+            Artist result = qr.getResults().get(0);
+
+            // Assert
+            Assert.assertEquals("0abc2121-29ec-48e4-b018-abca5b4c8040", result.getId());
+            Assert.assertEquals("Bob Welch", result.getStageName());
+            Assert.assertEquals("1945-08-31", result.getBirthDate());
+            Assert.assertEquals("Los Angeles, California", result.getBirthPlace());
+            Assert.assertEquals("2012-06-07", result.getDeathDate());
+            Assert.assertEquals("Nashville", result.getDeathPlace());
+            Assert.assertEquals(false, result.getIsFictional());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void artistsByIdQuery() {
+        // Arrange
+        ArtistsByIdQuery qo = new ArtistsByIdQuery();
+        qo.setId("f01e23df-318f-e311-be87-ac220b82800d");
+        qo.setDepth(Arrays.asList(ArtistRetrievalDepth.GROUPS,ArtistRetrievalDepth.DATES));
+
+        // Act
+        try {
+            ArtistsByIdQueryResult qr = myDecibel.Execute(qo);
+            Artist result = qr.getResult();
+
+            // Assert
+            Assert.assertEquals("f01e23df-318f-e311-be87-ac220b82800d", result.getId());
+            Assert.assertEquals("Mick Fleetwood", result.getStageName());
+
+            Artist groups = result.getGroups()[0];
+            Assert.assertEquals("Fleetwood Mac", groups.getStageName());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Test(expected=DecibelException.class)
     public void queryWithError() throws DecibelException{
         // Arrange
         Decibel badDecibel = new Decibel("", "");
-        ArtistsQuery qo = new ArtistsQuery();
-        qo.setName("Foo Fighters");
-        
+        AlbumsQuery qo = new AlbumsQuery();
+        qo.setTitle("Rumours");
         // Act/Assert
-        ArtistsQueryResult result = badDecibel.Execute(qo);
+        AlbumsQueryResult result = badDecibel.Execute(qo);
+    }
+    @Test
+    public void rateLimitTest(){
+
     }
 }

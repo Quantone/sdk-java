@@ -4,7 +4,7 @@
 
   <groupId>net.decibel.sdk</groupId>
   <artifactId>DecibelSDK</artifactId>
-  <version>0.1.3</version>
+  <version>0.2.0</version>
   <packaging>jar</packaging>
 
   <name>DecibelSDK</name>

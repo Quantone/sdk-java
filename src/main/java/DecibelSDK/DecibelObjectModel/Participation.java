@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Participation{
+public class Participation extends DecibelEntity{
     private String activityLiteral;
 
     /**

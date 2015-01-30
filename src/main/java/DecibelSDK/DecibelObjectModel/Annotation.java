@@ -25,4 +25,20 @@ public class Annotation extends DecibelEntity{
         this.text = text;
     }
 
+    private AnnotationReference[] references;
+
+    /**
+     * @return the References
+     */
+    public AnnotationReference[] getReferences() {
+        return references;
+    }
+
+    /**
+     * @param references the References to set
+     */
+    public void setReferences(AnnotationReference[] references) {
+        this.references = references;
+    }
+
 }

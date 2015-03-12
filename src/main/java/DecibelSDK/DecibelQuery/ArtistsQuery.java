@@ -41,6 +41,22 @@ public class ArtistsQuery implements Query<ArtistsQueryResult>{
         this.depth = depth;
     }
 
+    private List<String> genres;
+
+    /**
+     * @return the genres
+     */
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    /**
+     * @param genres the genres to set
+     */
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
     private ArtistSearchType nameSearchType;
 
     /**
@@ -153,6 +169,38 @@ public class ArtistsQuery implements Query<ArtistsQueryResult>{
         this.dateDied = dateDied;
     }
 
+    private String placeBornName;
+
+    /**
+     * @return the placeBornName
+     */
+    public String getPlaceBornName() {
+        return placeBornName;
+    }
+
+    /**
+     * @param placeBornName the placeBornName to set
+     */
+    public void setPlaceBornName(String placeBornName) {
+        this.placeBornName = placeBornName;
+    }
+
+    private String placeDiedName;
+
+    /**
+     * @return the placeDiedName
+     */
+    public String getPlaceDiedName() {
+        return placeDiedName;
+    }
+
+    /**
+     * @param placeDiedName the placeDiedName to set
+     */
+    public void setPlaceDiedName(String placeDiedName) {
+        this.placeDiedName = placeDiedName;
+    }
+
     private Gender gender;
 
     /**
@@ -223,6 +271,7 @@ public class ArtistsQuery implements Query<ArtistsQueryResult>{
 
         queryStr.append(valueOrDefault("orderby", orderBy, null));
         queryStr.append(valueOrDefault("depth", depth, null));
+        queryStr.append(valueOrDefault("genres", genres, null));
         queryStr.append(valueOrDefault("namesearchtype", nameSearchType, ArtistSearchType.FULLNAME));
         queryStr.append(valueOrDefault("idtype", idType, ArtistIdType.DECIBEL));
         queryStr.append(valueOrDefault("name", name, null));
@@ -230,6 +279,8 @@ public class ArtistsQuery implements Query<ArtistsQueryResult>{
         queryStr.append(valueOrDefault("language", language, null));
         queryStr.append(valueOrDefault("dateborn", dateBorn, null));
         queryStr.append(valueOrDefault("datedied", dateDied, null));
+        queryStr.append(valueOrDefault("placebornname", placeBornName, null));
+        queryStr.append(valueOrDefault("placediedname", placeDiedName, null));
         queryStr.append(valueOrDefault("gender", gender, null));
         queryStr.append(valueOrDefault("pagenumber", pageNumber, 1));
         queryStr.append(valueOrDefault("pagesize", pageSize, null));

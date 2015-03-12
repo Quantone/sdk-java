@@ -89,6 +89,22 @@ public class RecordingsQueryObject extends SearchQueryObject{
         this.dateProduced = dateProduced;
     }
 
+    private String placeProducedName;
+
+    /**
+     * @return the PlaceProducedName
+     */
+    public String getPlaceProducedName() {
+        return placeProducedName;
+    }
+
+    /**
+     * @param placeProducedName the PlaceProducedName to set
+     */
+    public void setPlaceProducedName(String placeProducedName) {
+        this.placeProducedName = placeProducedName;
+    }
+
     private List<String> composers;
 
     /**
@@ -183,6 +199,22 @@ public class RecordingsQueryObject extends SearchQueryObject{
      */
     public void setArtistIds(List<String> artistIds) {
         this.artistIds = artistIds;
+    }
+
+    private List<String> genres;
+
+    /**
+     * @return the Genres
+     */
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    /**
+     * @param genres the Genres to set
+     */
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 
     private Boolean isLive;

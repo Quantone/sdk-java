@@ -105,6 +105,22 @@ public class RecordingsQuery implements Query<RecordingsQueryResult>{
         this.participantIds = participantIds;
     }
 
+    private List<String> genres;
+
+    /**
+     * @return the genres
+     */
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    /**
+     * @param genres the genres to set
+     */
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
     private List<OrderRecordingsBy> orderBy;
 
     /**
@@ -377,6 +393,22 @@ public class RecordingsQuery implements Query<RecordingsQueryResult>{
         this.dateMade = dateMade;
     }
 
+    private String placeMadeName;
+
+    /**
+     * @return the placeMadeName
+     */
+    public String getPlaceMadeName() {
+        return placeMadeName;
+    }
+
+    /**
+     * @param placeMadeName the placeMadeName to set
+     */
+    public void setPlaceMadeName(String placeMadeName) {
+        this.placeMadeName = placeMadeName;
+    }
+
     private Integer pageNumber;
 
     /**
@@ -435,6 +467,7 @@ public class RecordingsQuery implements Query<RecordingsQueryResult>{
         queryStr.append(valueOrDefault("composerids", composerIds, null));
         queryStr.append(valueOrDefault("participants", participants, null));
         queryStr.append(valueOrDefault("participantids", participantIds, null));
+        queryStr.append(valueOrDefault("genres", genres, null));
         queryStr.append(valueOrDefault("orderby", orderBy, null));
         queryStr.append(valueOrDefault("depth", depth, null));
         queryStr.append(valueOrDefault("titlesearchtype", titleSearchType, RecordingSearchType.FULLNAME));
@@ -452,6 +485,7 @@ public class RecordingsQuery implements Query<RecordingsQueryResult>{
         queryStr.append(valueOrDefault("maxseconds", maxSeconds, null));
         queryStr.append(valueOrDefault("islive", isLive, null));
         queryStr.append(valueOrDefault("datemade", dateMade, null));
+        queryStr.append(valueOrDefault("placemadename", placeMadeName, null));
         queryStr.append(valueOrDefault("pagenumber", pageNumber, null));
         queryStr.append(valueOrDefault("pagesize", pageSize, null));
         queryStr.append(valueOrDefault("updatedsince", updatedSince, null));

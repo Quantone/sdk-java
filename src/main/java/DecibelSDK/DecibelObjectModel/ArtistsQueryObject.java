@@ -105,6 +105,38 @@ public class ArtistsQueryObject extends SearchQueryObject{
         this.deathDate = deathDate;
     }
 
+    private String birthPlaceName;
+
+    /**
+     * @return the BirthPlaceName
+     */
+    public String getBirthPlaceName() {
+        return birthPlaceName;
+    }
+
+    /**
+     * @param birthPlaceName the BirthPlaceName to set
+     */
+    public void setBirthPlaceName(String birthPlaceName) {
+        this.birthPlaceName = birthPlaceName;
+    }
+
+    private String deathPlaceName;
+
+    /**
+     * @return the DeathPlaceName
+     */
+    public String getDeathPlaceName() {
+        return deathPlaceName;
+    }
+
+    /**
+     * @param deathPlaceName the DeathPlaceName to set
+     */
+    public void setDeathPlaceName(String deathPlaceName) {
+        this.deathPlaceName = deathPlaceName;
+    }
+
     private Gender gender;
 
     /**
@@ -121,20 +153,20 @@ public class ArtistsQueryObject extends SearchQueryObject{
         this.gender = gender;
     }
 
-    private String genre;
+    private List<String> genres;
 
     /**
-     * @return the Genre
+     * @return the Genres
      */
-    public String getGenre() {
-        return genre;
+    public List<String> getGenres() {
+        return genres;
     }
 
     /**
-     * @param genre the Genre to set
+     * @param genres the Genres to set
      */
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
     }
 
     private ArtistRetrievalDepth retrievalDepth;

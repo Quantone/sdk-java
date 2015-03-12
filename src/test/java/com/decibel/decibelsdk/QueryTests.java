@@ -152,8 +152,8 @@ private Decibel myDecibel;
             Location parentLocations = result.getParentLocations()[0];
             Assert.assertEquals("c6f42e79-32f5-4b70-85b6-54c9eae655ad", parentLocations.getId());
             Assert.assertEquals("Middle Location", parentLocations.getName());
-            Assert.assertEquals("4ed08017-989c-406d-a865-7c65789c8f25", parentLocations.getParentLocations.First().Id());
-            Assert.assertEquals("Top Location", parentLocations.getParentLocations.First().Name());
+            Assert.assertEquals("4ed08017-989c-406d-a865-7c65789c8f25", parentLocations.getParentLocations()[0].getId());
+            Assert.assertEquals("Top Location", parentLocations.getParentLocations()[0].getName());
         } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -233,7 +233,7 @@ private Decibel myDecibel;
 
             // Assert
 
-            DiscTag fileTags = result.getFileTags()[0];
+            FileTag fileTags = result.getFileTags()[0];
             Assert.assertEquals("4011222327628", fileTags.getAlbumEAN());
             Assert.assertEquals("156dda6c-358f-e311-be87-ac220b82800d", fileTags.getAlbumId());
             Assert.assertEquals("baee8712-368f-e311-be87-ac220b82800d", fileTags.getAlbumMediumId());

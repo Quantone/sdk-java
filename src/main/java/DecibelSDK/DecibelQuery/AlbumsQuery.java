@@ -105,6 +105,22 @@ public class AlbumsQuery implements Query<AlbumsQueryResult>{
         this.recordingIds = recordingIds;
     }
 
+    private List<String> genres;
+
+    /**
+     * @return the genres
+     */
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    /**
+     * @param genres the genres to set
+     */
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
     private List<OrderAlbumsBy> orderBy;
 
     /**
@@ -403,6 +419,7 @@ public class AlbumsQuery implements Query<AlbumsQueryResult>{
         queryStr.append(valueOrDefault("participantids", participantIds, null));
         queryStr.append(valueOrDefault("recordings", recordings, null));
         queryStr.append(valueOrDefault("recordingids", recordingIds, null));
+        queryStr.append(valueOrDefault("genres", genres, null));
         queryStr.append(valueOrDefault("orderby", orderBy, null));
         queryStr.append(valueOrDefault("depth", depth, null));
         queryStr.append(valueOrDefault("titlesearchtype", titleSearchType, AlbumSearchType.FULLNAME));

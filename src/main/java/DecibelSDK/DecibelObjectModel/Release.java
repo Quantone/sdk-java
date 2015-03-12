@@ -105,4 +105,36 @@ public class Release extends DecibelEntity{
         this.identifiers = identifiers;
     }
 
+    private Location[] locations;
+
+    /**
+     * @return the Locations
+     */
+    public Location[] getLocations() {
+        return locations;
+    }
+
+    /**
+     * @param locations the Locations to set
+     */
+    public void setLocations(Location[] locations) {
+        this.locations = locations;
+    }
+
+    private Label[] labels;
+
+    /**
+     * @return the Labels
+     */
+    public Label[] getLabels() {
+        return labels;
+    }
+
+    /**
+     * @param labels the Labels to set
+     */
+    public void setLabels(Label[] labels) {
+        this.labels = labels;
+    }
+
 }

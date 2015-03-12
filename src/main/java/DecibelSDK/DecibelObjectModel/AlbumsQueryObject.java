@@ -329,4 +329,20 @@ public class AlbumsQueryObject extends SearchQueryObject{
         this.retrievalDepth = retrievalDepth;
     }
 
+    private List<String> genres;
+
+    /**
+     * @return the Genres
+     */
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    /**
+     * @param genres the Genres to set
+     */
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
 }

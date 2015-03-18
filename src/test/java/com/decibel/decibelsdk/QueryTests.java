@@ -15,27 +15,8 @@ private Decibel myDecibel;
 
     @Before
     public void initialise(){
-        myDecibel = new Decibel("5589c9d1", "4154f53630c5cffd106cbe3ba0bd1eff");
+        myDecibel = new Decibel("{YOUR_APP_ID}", "{YOUR_APP_KEY}");
     }
-    @Test
-    public void imagesByIdQuery() {
-        // Arrange
-        ImagesByIdQuery qo = new ImagesByIdQuery();
-        qo.setId("5abb0387-9440-4273-aa20-bff159a89205");
-
-        // Act
-        try {
-            ImagesByIdQueryResult qr = myDecibel.Execute(qo);
-            Image result = qr.getResult();
-
-            // Assert
-            Assert.assertEquals("5abb0387-9440-4273-aa20-bff159a89205", result.getId());
-            Assert.assertEquals(ImageSize.STANDARD, result.getSize());
-        } catch (DecibelException ex) {
-            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     @Test
     public void albumsQuery() {
         // Arrange
@@ -105,6 +86,44 @@ private Decibel myDecibel;
             Assert.assertEquals("Fleetwood Mac", result.getArtistsLiteral());
             Assert.assertEquals("Rumours", result.getTitle());
             Assert.assertEquals("1977", result.getOriginalReleaseDate());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void labelsByIdQuery() {
+        // Arrange
+        LabelsByIdQuery qo = new LabelsByIdQuery();
+        qo.setId("9a0d3e1e-b75e-11e4-bec6-3085a9494443");
+
+        // Act
+        try {
+            LabelsByIdQueryResult qr = myDecibel.Execute(qo);
+            Label result = qr.getResult();
+
+            // Assert
+            Assert.assertEquals("9a0d3e1e-b75e-11e4-bec6-3085a9494443", result.getId());
+            Assert.assertEquals("TestRecordLabel", result.getName());
+        } catch (DecibelException ex) {
+            Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Test
+    public void labelsQuery() {
+        // Arrange
+        LabelsQuery qo = new LabelsQuery();
+        qo.setId("9a0d3e1e-b75e-11e4-bec6-3085a9494443");
+
+        // Act
+        try {
+            LabelsQueryResult qr = myDecibel.Execute(qo);
+            Label result = qr.getResults().get(0);
+
+            // Assert
+            Assert.assertEquals("9a0d3e1e-b75e-11e4-bec6-3085a9494443", result.getId());
+            Assert.assertEquals("TestRecordLabel", result.getName());
         } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -239,7 +258,6 @@ private Decibel myDecibel;
             Assert.assertEquals("baee8712-368f-e311-be87-ac220b82800d", fileTags.getAlbumMediumId());
             Assert.assertEquals("Rumours", fileTags.getAlbumTitle());
             Assert.assertEquals("TestCatNum", fileTags.getCatalogNum());
-            //Assert.assertEquals(1, fileTags.getDiscCount());
         } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -268,7 +286,6 @@ private Decibel myDecibel;
             Assert.assertEquals("Los Angeles, California", result.getBirthPlace());
             Assert.assertEquals("2012-06-07", result.getDeathDate());
             Assert.assertEquals("Nashville", result.getDeathPlace());
-            //Assert.assertEquals(false, result.getIsFictional());
         } catch (DecibelException ex) {
             Logger.getLogger(QueryTests.class.getName()).log(Level.SEVERE, null, ex);
         }
